@@ -2,6 +2,17 @@
 import {Template} from 'meteor/templating';
 
 /*
+ import the "items" Collection from API...
+*/
+// import {Items} from '../api/items.js';
+
+/*
+  Because only one thing is exported from items.js, and I used the
+  export default syntax, I can do away with the brackets around Items.
+*/
+import Items from '../api/items.js';
+
+/*
   Import the contents of the body.html file.
   When this file is imported, body.html will be imported too.
 */
@@ -13,7 +24,11 @@ import './body.html';
 */
 Template.body.helpers({
   firstName: 'Ryan',
-  lastName: 'Allen'
+  lastName: 'Allen',
+  items() {
+    // Helper to return everything in our Items collection.
+    return Items.find({});
+  }
 });
 
 /*

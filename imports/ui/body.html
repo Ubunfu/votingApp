@@ -4,6 +4,18 @@
   </header>
   <main>
     Hello, {{firstName}}!
+
+  <section>
+    <h2>Let's to some DB stuff!</h2>
+    Here's everything in your Items collection:
+    <ol>
+      <!-- This is like a for-each loop -->
+      {{#each items}}
+        <li>{{text}}</li>
+      {{/each}}
+    </ol>
+
+  </section>
   </main>
 
   <button type="button" class="btn-logger">Click Me</button>
