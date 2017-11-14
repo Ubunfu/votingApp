@@ -4,6 +4,9 @@ import { Meteor } from 'meteor/meteor';
 // This will run server-side
 import '../imports/api/items.js';
 
+// Logs on the server
+console.log('Hello server :]');
+
 Meteor.startup(() => {
   // code to run on server at startup
 });

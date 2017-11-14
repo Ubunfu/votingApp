@@ -9,6 +9,7 @@ import {Mongo} from 'meteor/mongo';
 /*
   If I'm only exporting ond thing, I can use the "export default"
   syntax.
+  We can use "meteor reset" to restart our app and clear our our DB.
 */
 const Items = new Mongo.Collection('items');
 export default Items;

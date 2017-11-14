@@ -11,10 +11,17 @@
     <ol>
       <!-- This is like a for-each loop -->
       {{#each items}}
-        <li>{{text}}</li>
+        <li>{{itemOne.text}} vs {{itemTwo.text}}</li>
       {{/each}}
     </ol>
 
+  </section>
+  <section>
+    <form class="form-options">
+      <input type="text" name="choice1" placeholder="First Choice" />
+      <input type="text" name="choice2" placeholder="Second Choice" />
+      <input type="submit" name="btn-submit" value="Go!" />
+    </form>
   </section>
   </main>
 

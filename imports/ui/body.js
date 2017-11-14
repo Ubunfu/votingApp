@@ -50,5 +50,34 @@ Template.body.events({
 // New meteor syntax allows us to modify the above like this
   'click .btn-logger'(event) {
     console.log("You clicked the button...");
+  },
+  'submit .form-options'(event) {
+    // This fires every time we click the form's submit button
+    // Below line stops page refreshing on submits that destroy our logs.
+    event.preventDefault();
+
+    // We can log the entire event to see the stuff we have access to
+    // console.log(event);
+
+    // Or we can grab specific parts of the event object
+    console.log(event.target.choice1.value);
+    console.log(event.target.choice2.value);
+
+    // We can use the values to make DB inserts!
+    Items.insert({
+      itemOne: {
+        text:event.target.choice1.value,
+        value:0
+      },
+      itemTwo: {
+        text:event.target.choice2.value,
+        value:0
+      }
+    });
+
+    // Clear the form after it is inserted
+    event.target.choice1.value='';
+    event.target.choice2.value='';
+
   }
 });
