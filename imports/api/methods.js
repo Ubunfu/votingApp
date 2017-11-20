@@ -3,6 +3,7 @@
 */
 
 // Need to import items collection here to enable DB access
+// Has baked in server-side methods
 import Items from './items.js';
 
 Meteor.methods({
@@ -10,7 +11,6 @@ Meteor.methods({
   // It takes two arguments, which we need for the insert.
   createNewItem(itemOne, itemTwo) {
     console.log(itemOne, itemTwo);
-
     Items.insert({
       itemOne: {
         text:itemOne,
@@ -21,5 +21,29 @@ Meteor.methods({
         value:0
       }
     });
+
+  },
+
+  // Update an item when we click on it to vote
+  updateItem(itemName, thing) {
+    console.log(itemName, thing);
+
+    if (itemName == 'itemOne') {
+      Items.update(thing._id, {
+        $set: {
+          'itemOne.value': thing.itemOne.value + 1
+        }
+      });
+    }else if (itemName == 'itemTwo') {
+      Items.update(thing._id, {
+        $set: {
+          'itemTwo.value': thing.itemTwo.value + 1
+        }
+      });
+    } else {
+      console.log("ERROR: Unknown item.");
+    }
+
   }
+
 });

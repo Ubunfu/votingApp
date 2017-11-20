@@ -88,8 +88,8 @@ Template.body.events({
 
     Meteor.call('createNewItem', event.target.choice1.value, event.target.choice2.value);
 
-    // event.target.choice1.value='';
-    // event.target.choice2.value='';
+    event.target.choice1.value='';
+    event.target.choice2.value='';
 
   }
 });
