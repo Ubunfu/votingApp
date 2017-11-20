@@ -2,6 +2,12 @@
 import {Mongo} from 'meteor/mongo';
 
 /*
+  Import the server-side methods here, so that when we import the
+  collection, we don't have to remember to also import the methods.
+*/
+import './methods.js';
+
+/*
   Export a new variable named Items as a new Mongo DB Collection.
 */
 // export const Items = new Mongo.Collection('items');
