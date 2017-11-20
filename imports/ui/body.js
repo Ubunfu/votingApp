@@ -12,6 +12,9 @@ import {Template} from 'meteor/templating';
 */
 import Items from '../api/items.js';
 
+// Import dependency for "item" template
+import './item.js';
+
 /*
   Import the contents of the body.html file.
   When this file is imported, body.html will be imported too.
@@ -28,6 +31,10 @@ Template.body.helpers({
   items() {
     // Helper to return everything in our Items collection.
     return Items.find({});
+  },
+  loggedIn() {
+    // Returns the user ID if the user is logged in.
+    return Meteor.userId();
   }
 });
 

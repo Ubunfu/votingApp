@@ -5,24 +5,37 @@
   <main>
     Hello, {{firstName}}!
 
+    <!--
+      Default Login login buttons
+      Styling comes build into the accounts-ui package
+      Need to install accounts-ui, accounts-password
+      npm install \-\-save bcrypt for ++ performance
+    -->
+    {{> loginButtons}}
   <section>
     <h2>Let's to some DB stuff!</h2>
     Here's everything in your Items collection:
     <ol>
       <!-- This is like a for-each loop -->
       {{#each items}}
-        <li>{{itemOne.text}} vs {{itemTwo.text}}</li>
+        <!-- <li>{{itemOne.text}} vs {{itemTwo.text}}</li> -->
+        <li>{{> item}}</li>
       {{/each}}
     </ol>
 
   </section>
-  <section>
-    <form class="form-options">
-      <input type="text" name="choice1" placeholder="First Choice" />
-      <input type="text" name="choice2" placeholder="Second Choice" />
-      <input type="submit" name="btn-submit" value="Go!" />
-    </form>
-  </section>
+
+  <!-- Only show this form if the user is logged in. -->
+  {{#if loggedIn}}
+    <section>
+      <form class="form-options">
+        <input type="text" name="choice1" placeholder="First Choice" />
+        <input type="text" name="choice2" placeholder="Second Choice" />
+        <input type="submit" name="btn-submit" value="Go!" />
+      </form>
+    </section>
+  {{/if}}
+
   </main>
 
   <button type="button" class="btn-logger">Click Me</button>
