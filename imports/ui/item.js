@@ -15,9 +15,19 @@ Template.item.helpers({
 // All of my event handlers for the items templates
 Template.item.events({
   'click .vote-one'(event) {
-    Meteor.call('updateItem', 'itemOne', this);
+    Meteor.call('updateItem', 'itemOne', this._id, (err)=> {
+        if(err) {
+          console.log(err);
+        }
+      } // callback
+    ); // updateItem
   },
   'click .vote-two'(event) {
-    Meteor.call('updateItem', 'itemTwo', this);
+    Meteor.call('updateItem', 'itemTwo', this._id, (err)=> {
+        if(err) {
+          console.log(err);
+        }
+      } // callback
+    ); // updateItem
   }
-});
+}); // events

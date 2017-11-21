@@ -70,26 +70,26 @@ Template.body.events({
     console.log(event.target.choice1.value);
     console.log(event.target.choice2.value);
 
-    // We can use the values to make DB inserts!
-    // Items.insert({
-    //   itemOne: {
-    //     text:event.target.choice1.value,
-    //     value:0
-    //   },
-    //   itemTwo: {
-    //     text:event.target.choice2.value,
-    //     value:0
-    //   }
-    // });
-
     // Instead of inserting from the client side, make the server do it.
+    Meteor.call(
+      'createNewItem',
+      event.target.choice1.value,
+      event.target.choice2.value,
+      // This is a callback! Runs when this call is finished!  Args are error and response from server.
+      (err, res)=> {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(res);
+          
+          // Clear the form after it is inserted
+          event.target.choice1.value='';
+          event.target.choice2.value='';
+        }
+      }
+    );
 
-    // Clear the form after it is inserted
 
-    Meteor.call('createNewItem', event.target.choice1.value, event.target.choice2.value);
-
-    event.target.choice1.value='';
-    event.target.choice2.value='';
 
   }
 });
