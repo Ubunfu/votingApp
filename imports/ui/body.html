@@ -12,8 +12,25 @@
       npm install \-\-save bcrypt for ++ performance
     -->
     {{> loginButtons}}
-  <section>
+
     <h2>Let's do some database stuff!</h2>
+
+  <!-- Only show this form if the user is logged in. -->
+  {{#if loggedIn}}
+    {{#if showForm}}
+      <section>
+        <form class="form-options">
+          <input type="text" validate name="choice1" placeholder="First Choice" />
+          <input type="text" name="choice2" placeholder="Second Choice" />
+          <input type="submit" name="btn-submit" value="Go!" />
+        </form>
+      </section>
+    {{else}}
+      <button type="button" class="show-form">Add Item</button>
+    {{/if}}
+  {{/if}}
+  <br>
+  <section>
     Here's everything in your Items collection:
     <ol>
       <!-- This is like a for-each loop -->
@@ -24,17 +41,6 @@
     </ol>
 
   </section>
-
-  <!-- Only show this form if the user is logged in. -->
-  {{#if loggedIn}}
-    <section>
-      <form class="form-options">
-        <input type="text" name="choice1" placeholder="First Choice" />
-        <input type="text" name="choice2" placeholder="Second Choice" />
-        <input type="submit" name="btn-submit" value="Go!" />
-      </form>
-    </section>
-  {{/if}}
 
   </main>
 

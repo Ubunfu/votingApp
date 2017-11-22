@@ -1,6 +1,8 @@
 // This imports the "Template" functionality from the meteor packages.
 import {Template} from 'meteor/templating';
 
+import {ReactiveDict} from 'meteor/reactive-dict';
+
 /*
  import the "items" Collection from API...
 */
@@ -26,6 +28,8 @@ import './body.html';
   onCreated is called as soon as the template is built.
 */
 Template.body.onCreated(function() {
+  // This is our reactive dictionary.
+  this.state = new ReactiveDict();
   Meteor.subscribe('allItems');
 });
 
@@ -49,6 +53,13 @@ Template.body.helpers({
   loggedIn() {
     // Returns the user ID if the user is logged in.
     return Meteor.userId();
+  },
+  showForm() {
+    // Set up a new instance of this template
+    const instance = Template.instance();
+
+    // return the value of the 'show-form' state variable
+    return instance.state.get('show-form');
   }
 });
 
@@ -69,10 +80,14 @@ Template.body.events({
 */
 
 // New meteor syntax allows us to modify the above like this
+  'click .show-form'(event, instance) {
+    // Set the 'show-form' state variable to true
+    instance.state.set('show-form', true);
+  },
   'click .btn-logger'(event) {
     console.log("You clicked the button...");
   },
-  'submit .form-options'(event) {
+  'submit .form-options'(event, instance) {
     // This fires every time we click the form's submit button
     // Below line stops page refreshing on submits that destroy our logs.
     event.preventDefault();
@@ -99,6 +114,9 @@ Template.body.events({
           // Clear the form after it is inserted
           event.target.choice1.value='';
           event.target.choice2.value='';
+
+          // Hide the form again
+          instance.state.set('show-form', false);
         }
       }
     );

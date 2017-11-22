@@ -20,6 +20,12 @@ Meteor.methods({
     check(itemOne, String);
     check(itemTwo, String);
 
+    // Check to make sure input is not empty.
+    if(!itemOne || !itemTwo) {
+      console.error("ERROR: invalid input.");
+      return;
+    }
+
     // Do the insert
     Items.insert({
       itemOne: {
