@@ -1,7 +1,11 @@
 // This imports the "Template" functionality from the meteor packages.
 import {Template} from 'meteor/templating';
 
+// Import Reactive Dictionary package
 import {ReactiveDict} from 'meteor/reactive-dict';
+
+// Import Session package
+import {Session} from 'meteor/session';
 
 /*
  import the "items" Collection from API...
@@ -60,6 +64,9 @@ Template.body.helpers({
 
     // return the value of the 'show-form' state variable
     return instance.state.get('show-form');
+  },
+  bgColor() {
+    return Session.get('bgColor');
   }
 });
 
@@ -80,6 +87,10 @@ Template.body.events({
 */
 
 // New meteor syntax allows us to modify the above like this
+  'click .bg-color'(event) {
+    // Set the bg session variable
+    Session.set('bgColor', 'orange');
+  },
   'click .show-form'(event, instance) {
     // Set the 'show-form' state variable to true
     instance.state.set('show-form', true);
