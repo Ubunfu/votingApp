@@ -40,6 +40,9 @@ Meteor.methods({
     check(itemName, String);
     check(id, String);
 
+    // Grab a new date to update the item's timestamp.
+    let date = new Date();
+
     /*
       Do the update
       Use the $inc colletions method instead of set!
@@ -50,12 +53,18 @@ Meteor.methods({
       Items.update(id, {
         $inc: {
           'itemOne.value': 1
+        },
+        $set: {
+          'lastUpdated': date
         }
       });
     }else if (itemName == 'itemTwo') {
       Items.update(id, {
         $inc: {
           'itemTwo.value': 1
+        },
+        $set: {
+          'lastUpdated': date
         }
       });
     } else {

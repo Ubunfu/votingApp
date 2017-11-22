@@ -37,8 +37,14 @@ Template.body.helpers({
   firstName: 'Ryan',
   lastName: 'Allen',
   items() {
-    // Helper to return everything in our Items collection.
-    return Items.find({});
+    // Helper to return stuff from our Items collection.
+    // Page them one at a time, ordering by <item>.lastUpdated.
+    return Items.find({}, {
+      limit: 1,
+      // sort 1 : oldest first
+      // sort -1 : newest first
+      sort: { lastUpdated: 1 }
+    });
   },
   loggedIn() {
     // Returns the user ID if the user is logged in.
