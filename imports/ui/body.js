@@ -22,6 +22,14 @@ import './item.js';
 import './body.html';
 
 /*
+  Subscribe to publications right away.
+  onCreated is called as soon as the template is built.
+*/
+Template.body.onCreated(function() {
+  Meteor.subscribe('allItems');
+});
+
+/*
   These helpers are grabbable from within templates.
   We can pull data and display it with helpers.
 */
@@ -81,7 +89,7 @@ Template.body.events({
           console.log(err);
         } else {
           console.log(res);
-          
+
           // Clear the form after it is inserted
           event.target.choice1.value='';
           event.target.choice2.value='';

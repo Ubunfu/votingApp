@@ -19,3 +19,18 @@ import './methods.js';
 */
 const Items = new Mongo.Collection('items');
 export default Items;
+/*
+  Make a publication we can subscribe to on the client side.
+  A Publication is like a carefully crafted selection of information to fulfill a purpose.
+  Only do this if we're on the server.
+*/
+if (Meteor.isServer) {
+  Meteor.publish('allItems', function() {
+    /*
+      Just return everything for now.
+      We can filter this out later.
+      Use Mongo queries to alter the data set.
+    */
+    return Items.find({});
+  });
+}
